@@ -1,0 +1,31 @@
+table {
+  width: 100%;
+
+
+}
+.container {
+  margin-top: 40px;
+  margin-left: 13px;
+}
+.mat-raised-button {
+  color: blueviolet;
+}
+.css {
+  margin-left: 20px;
+  margin-top: 10px;
+  border: rgb(138, 43, 226);
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.025);
+}
+.menu {
+  left: 100px;
+}
+.hide{
+  display: none;
+}
+mat-footer-row mat-footer-cell
+{
+  justify-content: center;
+  font-style: italic;
+  color:blueviolet
+}

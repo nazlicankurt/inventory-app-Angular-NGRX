@@ -1,0 +1,70 @@
+<mat-card>
+  <!-- Title of an Card -->
+  <mat-card-title>
+     Add New Product On Your Store
+  </mat-card-title>
+
+  <mat-card-content>
+      <form (ngSubmit)='onSubmit(productForm)' [formGroup]="productForm">
+          <table>
+              <tr>
+                <td>
+                  <mat-form-field class="full-width">
+                      <input matInput placeholder="Stock Code" formControlName="stockCode" >
+                  </mat-form-field>
+              </td>
+              <tr>
+
+
+                  <td>
+                      <mat-form-field class="full-width">
+                          <input matInput placeholder="Name" formControlName="name">
+                      </mat-form-field>
+                  </td>
+                  <tr>
+                  <td>
+                      <mat-form-field class="full-width">
+                          <input matInput placeholder="Amount" formControlName="amount">
+                      </mat-form-field>
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Created At</mat-label>
+                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName="createdAt">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </td>
+            </tr>
+            <p>
+              <mat-form-field appearance="fill">
+                <mat-label>Updated At</mat-label>
+                <input matInput [matDatepicker]="dp1" formControlName="lastUpdatedAt">
+                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                <mat-datepicker #dp1></mat-datepicker>
+              </mat-form-field>
+            </p>
+
+              <tr>
+              </tr>
+              <td>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Brand" formControlName="brand">
+                </mat-form-field>
+            </td>
+              <tr>
+                  <td colspan="2">
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2" class="content-center">
+                      <button mat-raised-button color="accent" routerLink= '/item-list'>Submit</button>
+
+                  </td>
+              </tr>
+          </table>
+      </form>
+  </mat-card-content>
+</mat-card>
