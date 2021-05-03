@@ -5,12 +5,14 @@
   </mat-card-title>
 
   <mat-card-content>
-      <form (ngSubmit)='onSubmit(productForm)' [formGroup]="productForm">
+      <form (ngSubmit)='onSubmit()' [formGroup]="productForm">
           <table>
               <tr>
                 <td>
                   <mat-form-field class="full-width">
                       <input matInput placeholder="Stock Code" formControlName="stockCode" >
+                      <mat-error *ngIf ="this.productForm.controls['stockCode'].errors?.minlength">Stock Code should be atleast 6 character</mat-error>
+                          <mat-error *ngIf ="this.productForm.controls['name'].errors?.required">Please enter a unique code</mat-error>
                   </mat-form-field>
               </td>
               <tr>
@@ -19,12 +21,17 @@
                   <td>
                       <mat-form-field class="full-width">
                           <input matInput placeholder="Name" formControlName="name">
-                      </mat-form-field>
+                          <mat-error *ngIf ="this.productForm.controls['name'].errors?.minlength">Name should be atleast 4 character</mat-error>
+                          <mat-error *ngIf ="this.productForm.controls['name'].errors?.required">Please enter a name</mat-error>
+                        </mat-form-field>
                   </td>
                   <tr>
                   <td>
                       <mat-form-field class="full-width">
                           <input matInput placeholder="Amount" formControlName="amount">
+
+                          <mat-error *ngIf ="this.productForm.controls['amount'].errors?.pattern">Please enter only number</mat-error>
+                          <mat-error *ngIf ="this.productForm.controls['amount'].errors?.maxlength" >Max amount should be 999</mat-error>
                       </mat-form-field>
                   </td>
               </tr>
@@ -38,29 +45,25 @@
                   </mat-form-field>
                 </td>
             </tr>
-            <p>
-              <mat-form-field appearance="fill">
-                <mat-label>Updated At</mat-label>
+            <td>
+              <mat-form-field appearance="fill" *ngIf="this.editMode">
+                <mat-label>Edit Mode</mat-label>
                 <input matInput [matDatepicker]="dp1" formControlName="lastUpdatedAt">
                 <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-                <mat-datepicker #dp1></mat-datepicker>
+                <mat-datepicker  #dp1></mat-datepicker>
               </mat-form-field>
-            </p>
+            </td>
 
               <tr>
               </tr>
-              <td>
-                <mat-form-field class="full-width">
-                    <input matInput placeholder="Brand" formControlName="brand">
-                </mat-form-field>
-            </td>
               <tr>
                   <td colspan="2">
                   </td>
               </tr>
               <tr>
                   <td colspan="2" class="content-center">
-                      <button mat-raised-button color="accent" routerLink= '/item-list'>Submit</button>
+                      <!-- <button type="button" mat-raised-button color="accent" routerLink= '/item-list'  routerLinkActive="active">Submit</button> -->
+                <button [disabled]="this.productForm.invalid && this.editMode" mat-raised-button color="accent" routerLink= '/item-list'  routerLinkActive="active">Submit</button>
 
                   </td>
               </tr>

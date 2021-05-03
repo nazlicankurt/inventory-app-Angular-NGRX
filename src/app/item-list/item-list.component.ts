@@ -22,7 +22,7 @@ export class ItemListComponent implements OnInit {
 
 
   displayedColumns: string[] = [
-
+    'status',
     'id',
     'stockCode',
     'name',
@@ -45,12 +45,9 @@ export class ItemListComponent implements OnInit {
       {
       this.dataSource.data= data;
     })
-    // this.store.pipe(select(getAllProducts)).subscribe(products => this.initializeData(products));
-    // this.subscription.add(this.store.pipe(select(areProductsLoaded)).subscribe(loading => {
-    //   if (loading) {
-    //     this.dataSource = new MatTableDataSource(this.noData);
-    //   }
-    // }));
+
+  }
+  editProduct(id: number){
 
   }
 

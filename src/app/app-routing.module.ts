@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashComponent } from './modules/dash/dash.component';
-import { ItemComponent } from './modules/product/item.component';
-import { ItemListComponent } from './modules/product/item-list/item-list.component';
+
+import { ItemComponent } from './item-list/item.component';
+import { ItemListComponent } from './item-list/item-list.component';
+import { NavComponent } from './nav/nav.component';
 
 
 const routes: Routes = [
- {path: 'item', component: ItemListComponent},
- {path: 'item-list', component: ItemComponent},
+  {path: '', component: NavComponent},
+ {path: 'item', component: ItemComponent},
+ {path: 'item-list', component: ItemListComponent},
 
- {path: '', component: DashComponent}
+
 ];
 
 @NgModule({

@@ -6,5 +6,5 @@ export interface Product {
    lastUpdatedAt:Date;
    amount: number;
    brand:string;
-   select: boolean;
+   status: boolean;
 }

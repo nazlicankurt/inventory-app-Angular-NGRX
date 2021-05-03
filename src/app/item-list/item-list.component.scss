@@ -1,8 +1,11 @@
 table {
   width: 100%;
+  margin-top: 30px;
 
 
 }
+
+
 .container {
   margin-top: 40px;
   margin-left: 13px;
@@ -27,5 +30,9 @@ mat-footer-row mat-footer-cell
 {
   justify-content: center;
   font-style: italic;
+  color:blueviolet
+}
+.mat-stroked-button {
+  margin-left: 40%;
   color:blueviolet
 }

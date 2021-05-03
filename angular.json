@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "inventory-app"
+  "defaultProject": "inventory-app",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
