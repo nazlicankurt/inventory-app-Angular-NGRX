@@ -24,6 +24,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 import { ItemEditComponent } from './pages/item-edit/item-edit.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [AppComponent, NavComponent, DashComponent, ItemComponent,ItemEditComponent, ItemListComponent],
   imports: [
@@ -36,6 +37,7 @@ import { ItemEditComponent } from './pages/item-edit/item-edit.component';
     HttpClientModule,
     MatTableExporterModule,
     FormsModule,
+    Ng2SearchPipeModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireStorageModule,

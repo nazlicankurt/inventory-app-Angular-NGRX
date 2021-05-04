@@ -29,7 +29,7 @@ export class ItemComponent implements OnInit {
     this.minDate = new Date(currentYear - 20, 0, 1);
     this.maxDate = new Date();
     this.productForm = this.formBuilder.group({
-      stockCode: ['PR-', [Validators.required, Validators.minLength(4)]],
+      stockCode: ['', [Validators.required, Validators.minLength(4)]],
       name: ['', [Validators.required, Validators.minLength(4)]],
       createdAt: ['', [Validators.required]],
       lastUpdatedAt: [null],

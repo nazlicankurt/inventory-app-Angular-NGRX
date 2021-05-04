@@ -30,6 +30,7 @@
     "@ngrx/store-devtools": "^11.1.1",
     "firebase": "^8.4.3",
     "mat-table-exporter": "^10.2.3",
+    "ng2-search-filter": "^0.5.1",
     "primeng": "^11.4.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

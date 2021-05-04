@@ -1,19 +1,17 @@
-
+<div class="container">
 <h1>Product List</h1>
 <button mat-stroked-button color="accent" routerLink="/item">New Product</button>
 <td>
 
 </td>
-  <!-- <button mat-raised-button
-    (click)="exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Nazlican'}})">Excel</button>
-  <button mat-raised-button (click)="exporter.exportTable('csv')">Csv</button>
-  <button mat-raised-button (click)="exporter.exportTable('json')">Json</button>
-  <button mat-raised-button (click)="exporter.exportTable('txt')">Txt</button> -->
+  <div class="form-group">
 
+    <input type="text" matInput placeholder="Search..."[(ngModel)]="filterTerm">
+  </div>
   <table class="table">
-    <thead>
-        <tr>
-            <th style="width: 30%">Status</th>
+    <thead >
+        <tr class="coverage">
+            <th style="width: 30%">Out of Stock</th>
             <th style="width: 30%">StockCode</th>
             <th style="width: 30%">Name</th>
             <th style="width: 30%">Amount</th>
@@ -23,15 +21,17 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pro of product">
-            <td> <input type="checkbox" *ngIf="pro.amount<1" >In Stock</td>
+        <tr *ngFor="let pro of product | filter : filterTerm">
+
+            <td> <input type="checkbox" [checked]="pro.amount<1" [disabled]="true" >In Stock
+          </td>
             <td>{{pro.stockCode}}</td>
             <td> {{pro.name}}</td>
             <td>{{pro.amount}}</td>
-            <td>{{pro.lastUpdatedAt}}</td>
+            <td>{{pro.lastUpdatedAt | date}}</td>
             <td>
-                <button  routerLink="edit/{{pro.id}}" ><mat-icon>Edit</mat-icon></button>
-                <span (click)="deletePro(pro.id)" class="text-danger">Delete</span> &nbsp;
+                <button  routerLink="edit/{{pro.id}}" ><mat-icon>receipt</mat-icon></button>
+                <button (click)="deletePro(pro.id)" class="text-danger"><mat-icon>delete</mat-icon></button> &nbsp;
             </td>
         </tr>
         <tr *ngIf="!product">
@@ -41,3 +41,4 @@
         </tr>
     </tbody>
 </table>
+</div>

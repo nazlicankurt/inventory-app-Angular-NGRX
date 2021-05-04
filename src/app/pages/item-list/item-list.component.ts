@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/core/services/product.service';
 })
 export class ItemListComponent implements OnInit {
 product: Product[]=[];
-
+filterTerm! : string;
   constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) {}
 
 
@@ -25,7 +25,7 @@ product: Product[]=[];
 
 deletePro(id:string){
   this.productService.deleteProduct(id)
-  .subscribe((res)=>{
+  .subscribe(()=>{
     this.router.navigate(['/item-list']);
   }, err =>{
     console.log(err);

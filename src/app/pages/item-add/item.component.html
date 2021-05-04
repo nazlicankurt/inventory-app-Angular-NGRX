@@ -64,8 +64,10 @@
               <tr>
                   <td colspan="2" class="content-center">
                       <!-- <button type="button" mat-raised-button color="accent" routerLink= '/item-list'  routerLinkActive="active">Submit</button> -->
-                <button type="submit" mat-raised-button color="accent" >Save</button>
+                <button type="submit" [disabled] ="this.productForm.invalid" mat-raised-button color="accent" >Save</button>
 
+                <tr></tr>
+                <button type="cancel" mat-raised-button color="accent"  routerLink="/item-list">Cancel</button>
 
                   </td>
               </tr>
