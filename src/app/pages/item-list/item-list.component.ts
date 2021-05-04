@@ -26,7 +26,7 @@ filterTerm! : string;
 deletePro(id:string){
   this.productService.deleteProduct(id)
   .subscribe(()=>{
-    this.router.navigate(['/item-list']);
+    this.router.navigate(['/item']);
   }, err =>{
     console.log(err);
 

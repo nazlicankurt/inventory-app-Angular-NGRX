@@ -23,15 +23,15 @@
     <tbody>
         <tr *ngFor="let pro of product | filter : filterTerm">
 
-            <td> <input type="checkbox" [checked]="pro.amount<1" [disabled]="true" >In Stock
+            <td> <input type="checkbox" [checked]="pro.amount<1" [disabled]="true" >Out of Stock
           </td>
-            <td>{{pro.stockCode}}</td>
+            <td>{{pro.stockCode | uppercase}}</td>
             <td> {{pro.name}}</td>
             <td>{{pro.amount}}</td>
             <td>{{pro.lastUpdatedAt | date}}</td>
             <td>
                 <button  routerLink="edit/{{pro.id}}" ><mat-icon>receipt</mat-icon></button>
-                <button (click)="deletePro(pro.id)" class="text-danger"><mat-icon>delete</mat-icon></button> &nbsp;
+                <button (click)="deletePro(pro)" class="text-danger"><mat-icon>delete</mat-icon></button> &nbsp;
             </td>
         </tr>
         <tr *ngIf="!product">

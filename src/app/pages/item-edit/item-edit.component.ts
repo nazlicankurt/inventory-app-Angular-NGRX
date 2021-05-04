@@ -16,6 +16,7 @@ export class ItemEditComponent implements OnInit {
   isAddMode: boolean = false;
   minDate: Date;
   maxDate: Date;
+  minDate1: Date;
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
@@ -27,6 +28,7 @@ export class ItemEditComponent implements OnInit {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 20, 0, 1);
     this.maxDate = new Date();
+    this.minDate1=new Date();
     this.productForm = this.formBuilder.group({
       stockCode: ['PR-', [Validators.required, Validators.minLength(4)]],
       name: ['', [Validators.required, Validators.minLength(4)]],
@@ -38,9 +40,7 @@ export class ItemEditComponent implements OnInit {
 
 
   }
-//   formAvailableValidator(fg : FormGroup): Validators{
-// return fg.get('amount').value == fg.get('')
-//   }
+
 
   ngOnInit(): void {
 this.getProductsById(this.route.snapshot.params.id)
@@ -61,16 +61,11 @@ getProductsById(id:string) {
 
     }) })
 }
-  // onSubmit(productForm: FormGroup) {
-  //   this.store.dispatch(ProductActionTypes.createProduct(productForm.value));
-  //   if (this.editMode) {
-  //   }
 
   onSubmit() {
 
       this.productService.updateProduct(this.id, this.productForm.value).pipe().subscribe(() => {
-        this.router.navigate(['/item-list'], {relativeTo: this.route})
-      console.log("kdfkjfjhd", this.productForm.value)
+        this.router.navigate(['/item'], {relativeTo: this.route})
       })
     }
 

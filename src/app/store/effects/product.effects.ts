@@ -24,21 +24,21 @@ export class productEffects {
     {dispatch: false}
   );
 
-  deleteProduct$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ProductActionTypes.deleteProduct),
-      concatMap((action) => this.productService.deleteProduct(action.id))
-    ),
-    {dispatch: false}
-  );
+  // deleteProduct$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(ProductActionTypes.deleteProduct),
+  //     concatMap((action) => this.productService.deleteProduct(action.id))
+  //   ),
+  //   {dispatch: false}
+  // );
 
-  updateProduct$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ProductActionTypes.updateProduct),
-      concatMap((action) => this.productService.updateProduct(action.update))
-    ),
-    {dispatch: false}
-  );
+  // updateProduct$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(ProductActionTypes.updateProduct),
+  //     concatMap((action) => this.productService.updateProduct(action.update))
+  //   ),
+  //   {dispatch: false}
+  // );
 
   constructor(private productService: ProductService, private actions$: Actions, private router: Router) {}
 }
