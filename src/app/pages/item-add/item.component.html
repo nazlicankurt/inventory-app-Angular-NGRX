@@ -1,17 +1,19 @@
 <mat-card>
   <!-- Title of an Card -->
   <mat-card-title>
-     Add New Product On Your Store
+    <h1 *ngIf="isAddMode">Add Product</h1>
+<h1 *ngIf="!isAddMode">Edit Product</h1>
   </mat-card-title>
 
   <mat-card-content>
+
       <form (ngSubmit)='onSubmit()' [formGroup]="productForm">
           <table>
               <tr>
                 <td>
                   <mat-form-field class="full-width">
                       <input matInput placeholder="Stock Code" formControlName="stockCode" >
-                      <mat-error *ngIf ="this.productForm.controls['stockCode'].errors?.minlength">Stock Code should be atleast 6 character</mat-error>
+                      <mat-error *ngIf ="this.productForm.controls['stockCode'].errors?.minlength">Stock Code should be atleast 4 character</mat-error>
                           <mat-error *ngIf ="this.productForm.controls['name'].errors?.required">Please enter a unique code</mat-error>
                   </mat-form-field>
               </td>
@@ -28,8 +30,7 @@
                   <tr>
                   <td>
                       <mat-form-field class="full-width">
-                          <input matInput placeholder="Amount" formControlName="amount">
-
+                          <input matInput type="number" min="0" step="0" placeholder="Amount" formControlName="amount">
                           <mat-error *ngIf ="this.productForm.controls['amount'].errors?.pattern">Please enter only number</mat-error>
                           <mat-error *ngIf ="this.productForm.controls['amount'].errors?.maxlength" >Max amount should be 999</mat-error>
                       </mat-form-field>
@@ -45,14 +46,14 @@
                   </mat-form-field>
                 </td>
             </tr>
-            <td>
-              <mat-form-field appearance="fill" *ngIf="this.editMode">
-                <mat-label>Edit Mode</mat-label>
-                <input matInput [matDatepicker]="dp1" formControlName="lastUpdatedAt">
-                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-                <mat-datepicker  #dp1></mat-datepicker>
-              </mat-form-field>
-            </td>
+              <td>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Updated At</mat-label>
+                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1" formControlName="lastUpdatedAt">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+              </td>
 
               <tr>
               </tr>
@@ -63,7 +64,8 @@
               <tr>
                   <td colspan="2" class="content-center">
                       <!-- <button type="button" mat-raised-button color="accent" routerLink= '/item-list'  routerLinkActive="active">Submit</button> -->
-                <button [disabled]="this.productForm.invalid && this.editMode" mat-raised-button color="accent" routerLink= '/item-list'  routerLinkActive="active">Submit</button>
+                <button type="submit" mat-raised-button color="accent" routerLink= '/item-list' routerLinkActive="active">Save</button>
+
 
                   </td>
               </tr>

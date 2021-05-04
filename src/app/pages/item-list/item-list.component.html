@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
 
 <button mat-stroked-button color="accent" routerLink="/item">New Product</button>
 <td>
@@ -23,7 +23,6 @@
     </td>
   </ng-container>
 
-  <!-- Position Column -->
   <ng-container matColumnDef="status">
     <mat-header-cell *matHeaderCellDef>Check</mat-header-cell>
     <mat-cell *matCellDef="let element; let i=index">
@@ -36,13 +35,12 @@
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
-  <!-- Name Column -->
   <ng-container matColumnDef="name" >
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
+
   <ng-container matColumnDef="stockCode" >
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock Code </th>
     <td mat-cell *matCellDef="let element"> {{element.stockCode  | uppercase}} </td>
@@ -52,7 +50,6 @@
     <td mat-cell *matCellDef="let element"> {{element.lastUpdatedAt |  date:'dd/MM/yyyy'}} </td>
   </ng-container>
 
-  <!-- Symbol Column -->
   <ng-container matColumnDef="amount">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
     <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
@@ -61,8 +58,8 @@
   <ng-container matColumnDef="actions" >
     <mat-header-cell *matHeaderCellDef>
     <mat-cell *matCellDef="let row; let i=index;">
-      <button mat-icon-button color="primary">
-        <mat-icon aria-label="Edit">edit</mat-icon>
+      <button mat-icon-button color="primary"> -->
+        <!-- <mat-icon aria-label="Edit">edit</mat-icon>
       </button>
 
       <button mat-icon-button color="warn">
@@ -82,5 +79,49 @@
 </mat-footer-cell>
 </ng-container>
   <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource!=null}"></mat-footer-row>
-</table>
+</table> -->
+<h1>Product List</h1>
+<button mat-stroked-button color="accent" routerLink="/item">New Product</button>
+<td>
 
+</td>
+  <!-- <button mat-raised-button
+    (click)="exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Nazlican'}})">Excel</button>
+  <button mat-raised-button (click)="exporter.exportTable('csv')">Csv</button>
+  <button mat-raised-button (click)="exporter.exportTable('json')">Json</button>
+  <button mat-raised-button (click)="exporter.exportTable('txt')">Txt</button> -->
+
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 30%">Status</th>
+            <th style="width: 30%">StockCode</th>
+            <th style="width: 30%">Name</th>
+            <th style="width: 30%">Amount</th>
+            <th style="width: 30%">Updated At</th>
+
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pro of product">
+            <td>{{pro.status}}</td>
+            <td>{{pro.stockCode}}</td>
+            <td> {{pro.name}}</td>
+            <td>{{pro.amount}}</td>
+            <td>{{pro.lastUpdatedAt}}</td>
+            <td>
+                <a routerLink="edit/{{pro.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <!-- <button (click)="deletePro(pro.id)"  [disabled]="pro.isDeleting">
+                    <span *ngIf="pro.isDeleting" ></span>
+                    <span *ngIf="!pro.isDeleting">Delete</span>
+                </button> -->
+            </td>
+        </tr>
+        <tr *ngIf="!product">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

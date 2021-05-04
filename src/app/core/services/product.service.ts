@@ -9,7 +9,7 @@ import { Product } from '../models/product';
 export class ProductService {
   product: Product[] = [];
 
-  url = 'https://60841f429b2bed0017040b2f.mockapi.io/products';
+  url = 'https://60841f429b2bed0017040b2f.mockapi.io/products/';
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) {}
@@ -21,8 +21,8 @@ export class ProductService {
     return this.http.post<Product>(this.url, product);
   }
 
-  updateProduct(model: Product): Observable<Product> {
-    return this.http.put<Product>(this.url + model.id, model);
+  updateProduct(id: string,model: Product): Observable<Product> {
+    return this.http.put<Product>(this.url + id, model);
   }
 
   deleteProduct(id: number) {

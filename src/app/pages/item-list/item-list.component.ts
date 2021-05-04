@@ -17,39 +17,25 @@ import { areProductsLoaded, getAllProducts } from 'src/app/store/selectors/produ
   styleUrls: ['./item-list.component.scss'],
 })
 export class ItemListComponent implements OnInit {
+product: Product[]=[];
 
-  constructor(private proService: ProductService, private store : State<AppState>) {}
+  constructor(private productService: ProductService, private store : State<AppState>) {}
 
 
-  displayedColumns: string[] = [
-    'status',
-    'id',
-    'stockCode',
-    'name',
-    'amount',
-    'lastUpdatedAt',
-    'actions',
-  ];
-  dataSource = new MatTableDataSource<Product>();
-  selection = new SelectionModel<Product>(true, []);
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
   ngOnInit(): void {
 
-    this.proService.getAllProducts().subscribe(data=>
-      {
-      this.dataSource.data= data;
+    this.productService.getAllProducts().pipe().subscribe(data =>{
+      this.product =data;
     })
 
   }
-  editProduct(id: number){
-
-  }
+//   deletePro(id: string) {
+//     const pro = this.product.find(x => x.id === id);
+//     pro.isDeleting = true;
+//     this.productService.delete(id)
+//         .pipe(first())
+//         .subscribe(() => this.users = this.users.filter(x => x.id !== id));
+// }
 
 
 
