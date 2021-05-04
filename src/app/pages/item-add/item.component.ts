@@ -35,11 +35,11 @@ export class ItemComponent implements OnInit {
       lastUpdatedAt: [null],
       amount: [
         '',
-        [
+        Validators.compose([
           Validators.required,
           Validators.pattern('^[0-9]*$'),
           Validators.maxLength(3),
-        ],
+        ]),
       ],
     });
   }
@@ -55,7 +55,6 @@ export class ItemComponent implements OnInit {
       .pipe()
       .subscribe(() => {
         this.router.navigate(['/item'], { relativeTo: this.route });
-        console.log('kdfkjfjhd', this.productForm.value);
       });
   }
 }
