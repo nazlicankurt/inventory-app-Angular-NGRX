@@ -17,6 +17,10 @@ export class ProductService {
     return this.http.get<Product[]>(this.url, { headers: this.httpHeaders });
   }
 
+  getById(id: string) :Observable<Product> {
+    return this.http.get<Product>(this.url +id)
+}
+
   createProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.url, product);
   }
@@ -25,7 +29,7 @@ export class ProductService {
     return this.http.put<Product>(this.url + id, model);
   }
 
-  deleteProduct(id: number) {
+  deleteProduct(id: string) {
     return this.http.delete(this.url + id);
   }
 }

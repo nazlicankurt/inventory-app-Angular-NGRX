@@ -10,13 +10,13 @@ import { ProductService } from 'src/app/core/services/product.service';
   styleUrls: ['./item.component.scss'],
 })
 export class ItemComponent implements OnInit {
+
+
   productForm: FormGroup;
    id!:string;
   isAddMode: boolean = false;
   minDate: Date;
   maxDate: Date;
-  displayMessage: { [key: string]: string } = {};
-
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
@@ -36,6 +36,8 @@ export class ItemComponent implements OnInit {
       amount: ['', Validators.compose([Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(3)])],
 
     });
+
+
   }
 //   formAvailableValidator(fg : FormGroup): Validators{
 // return fg.get('amount').value == fg.get('')
@@ -43,8 +45,8 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
 
-this.id = this.route.snapshot.params['id'];
-this.isAddMode=!this.id;
+   this.id = this.route.snapshot.params['id'];
+   this.isAddMode=!this.id;
 
   }
 
@@ -54,26 +56,12 @@ this.isAddMode=!this.id;
   //   if (this.editMode) {
   //   }
 
+
   onSubmit() {
 
-    if(this.productForm.invalid)
-    {
-      return;
-    }
-    if(this.isAddMode)
-    {
-      this.productService.createProduct(this.productForm.value).pipe().subscribe(() => {
-        this.router.navigate(['/item-list'], {relativeTo: this.route})
-      console.log("kdfkjfjhd", this.productForm.value)
-      })
-    }
-    else{
-      this.productService.updateProduct(this.id, this.productForm.value).pipe().subscribe(() =>{
-        this.router.navigate(['/edit/id'], {relativeTo:this.route});
-
-      })
-
-    }
-}
-
+    this.productService.createProduct(this.productForm.value).pipe().subscribe(() => {
+      this.router.navigate(['/item-list'], {relativeTo: this.route})
+    console.log("kdfkjfjhd", this.productForm.value)
+    })
+  }
 }

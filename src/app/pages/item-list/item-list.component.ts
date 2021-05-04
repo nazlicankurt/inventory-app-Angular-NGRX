@@ -1,14 +1,7 @@
-import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { select, State } from '@ngrx/store';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/core/models/product';
 import { ProductService } from 'src/app/core/services/product.service';
-import { AppState } from 'src/app/store';
-import { ProductActionTypes } from 'src/app/store/actions/product.actions';
-import { areProductsLoaded, getAllProducts } from 'src/app/store/selectors/product.selectors';
 
 
 @Component({
@@ -19,7 +12,7 @@ import { areProductsLoaded, getAllProducts } from 'src/app/store/selectors/produ
 export class ItemListComponent implements OnInit {
 product: Product[]=[];
 
-  constructor(private productService: ProductService, private store : State<AppState>) {}
+  constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) {}
 
 
   ngOnInit(): void {
@@ -29,14 +22,17 @@ product: Product[]=[];
     })
 
   }
-//   deletePro(id: string) {
-//     const pro = this.product.find(x => x.id === id);
-//     pro.isDeleting = true;
-//     this.productService.delete(id)
-//         .pipe(first())
-//         .subscribe(() => this.users = this.users.filter(x => x.id !== id));
-// }
 
+deletePro(id:string){
+  this.productService.deleteProduct(id)
+  .subscribe((res)=>{
+    this.router.navigate(['/item-list']);
+  }, err =>{
+    console.log(err);
 
-
+  });
 }
+}
+
+
+

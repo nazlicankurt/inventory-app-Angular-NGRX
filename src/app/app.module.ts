@@ -23,8 +23,9 @@ import { reducers, metaReducers } from './store';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
+import { ItemEditComponent } from './pages/item-edit/item-edit.component';
 @NgModule({
-  declarations: [AppComponent, NavComponent, DashComponent, ItemComponent, ItemListComponent],
+  declarations: [AppComponent, NavComponent, DashComponent, ItemComponent,ItemEditComponent, ItemListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

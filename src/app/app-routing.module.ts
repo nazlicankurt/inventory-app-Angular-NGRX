@@ -4,13 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { ItemComponent } from './pages/item-add/item.component';
 import { ItemListComponent } from './pages/item-list/item-list.component';
 import { NavComponent } from './nav/nav.component';
+import { ItemEditComponent } from './pages/item-edit/item-edit.component';
 
 
 const routes: Routes = [
   {path: '', component: NavComponent},
  {path: 'item', component: ItemComponent},
  {path: 'item-list', component: ItemListComponent},
- {path: 'item-list/edit/:id', component: ItemComponent}
+ {path: 'item-list/edit/:id', component: ItemEditComponent}
+
 
 
 ];
