@@ -1,27 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavComponent } from './home/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { DashComponent } from './home/dash/dash.component';
-import { ItemComponent } from './pages/item-add/item.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MaterialModule } from './core/modules/material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ItemListComponent } from './pages/item-list/item-list.component';
-import { MatTableExporterModule } from 'mat-table-exporter';
-import { ProductService } from './core/services/product.service';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
-import { reducers, metaReducers } from './store';
-import { ItemEditComponent } from './pages/item-edit/item-edit.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { EffectsModule } from '@ngrx/effects';
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { MaterialModule } from './core/modules/material.module';
+import { ProductService } from './core/services/product.service';
+import { DashComponent } from './home/dash/dash.component';
+import { NavComponent } from './home/nav/nav.component';
 
+import { ItemComponent } from './pages/item-add/item.component';
+import { ItemEditComponent } from './pages/item-edit/item-edit.component';
+import { ItemListComponent } from './pages/item-list/item-list.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { StateStoreModule } from './store/store.module';
 @NgModule({
   declarations: [AppComponent, NavComponent, DashComponent, ItemComponent, ItemEditComponent, ItemListComponent, NotFoundComponent],
   imports: [
@@ -36,9 +36,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     FormsModule,
     Ng2SearchPipeModule,
     StoreModule.forRoot({}),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StateStoreModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
 
   ],
   providers: [ProductService],

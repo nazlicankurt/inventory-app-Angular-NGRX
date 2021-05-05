@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { State } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Product } from 'src/app/core/models/product';
-import { ProductService } from 'src/app/core/services/product.service';
+import * as actions from '../../store/actions/product.actions';
+import * as fromReducer from '../../store/selectors/product.selectors';
 
 @Component({
   selector: 'app-item-list',
@@ -11,37 +12,25 @@ import { ProductService } from 'src/app/core/services/product.service';
   styleUrls: ['./item-list.component.scss'],
 })
 export class ItemListComponent implements OnInit {
-  product: Product[] = [];
-  subs!: Subscription;
-  filterTerm!: string;
+
+  products$: Observable<Product[]>;
+  filterTerm: string;
+
   constructor(
-    private productService: ProductService,
+    private store: Store,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router) { }
+
 
   ngOnInit(): void {
-    this.fetchData();
+    this.store.dispatch(actions.loadProducts());
+    this.products$ = this.store.select(fromReducer.getAllProducts);
   }
 
-  fetchData() {
-    this.productService
-      .getAllProducts()
-      .pipe()
-      .subscribe((data) => {
-        this.product = data;
-      });
-  }
-
-  deletePro(id: string) {
-    this.productService.deleteProduct(id).subscribe(
-      (res) => {
-        this.fetchData();
-        this.router.navigate(['/item']);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+  deletePro(id: string): void {
+    this.store.dispatch(actions.deleteProduct({ id }));
   }
 }
+
+
+
