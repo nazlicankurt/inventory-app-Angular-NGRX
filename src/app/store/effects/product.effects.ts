@@ -1,44 +1,50 @@
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { concatMap, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
+import { catchError, concatMap, map, mapTo, tap } from 'rxjs/operators';
 import { ProductService } from 'src/app/core/services/product.service';
-import { ProductActionTypes, updateProduct } from '../actions/product.actions';
-
+import * as actions from '../actions/product.actions';
 @Injectable()
-export class productEffects {
+export class ProductEffects {
+
+  constructor(private productService: ProductService, private actions$: Actions, private router: Router) { }
 
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProductActionTypes.loadProducts),
+      ofType(actions.loadProducts),
       concatMap(() => this.productService.getAllProducts()),
-      map((product) => ProductActionTypes.ProductsLoaded({product}))
+      map((product) => actions.productsLoaded({ product }))
     )
   );
+
   createProduct$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProductActionTypes.createProduct),
+      ofType(actions.createProduct),
       concatMap((action) => this.productService.createProduct(action.product)),
       tap(() => this.router.navigateByUrl('/products'))
     ),
-    {dispatch: false}
+    { dispatch: false }
   );
 
-  // deleteProduct$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(ProductActionTypes.deleteProduct),
-  //     concatMap((action) => this.productService.deleteProduct(action.id))
-  //   ),
-  //   {dispatch: false}
-  // );
+  deleteProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.deleteProduct),
+      concatMap((action) => this.productService.deleteProduct(action.id)
+        .pipe(
+          mapTo(actions.deleteProductSuccess({ id: action.id })),
+          catchError(() => of(actions.deleteProductSuccess({ id: action.id })))
+        )
+      ),
+    )
+  );
 
   // updateProduct$ = createEffect(() =>
   //   this.actions$.pipe(
-  //     ofType(ProductActionTypes.updateProduct),
+  //     ofType(actions.updateProduct),
   //     concatMap((action) => this.productService.updateProduct(action.update))
   //   ),
   //   {dispatch: false}
   // );
 
-  constructor(private productService: ProductService, private actions$: Actions, private router: Router) {}
 }

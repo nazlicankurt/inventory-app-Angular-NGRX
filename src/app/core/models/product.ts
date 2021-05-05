@@ -3,8 +3,8 @@ export interface Product {
    stockCode: number;
    name: string;
    createdAt: Date;
-   lastUpdatedAt:Date;
+   lastUpdatedAt: Date;
    amount: number;
-   brand:string;
+   brand: string;
    status: boolean;
 }

@@ -1,8 +1,9 @@
-
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { Product } from 'src/app/core/models/product';
-import { ProductActionTypes, updateProduct } from '../actions/product.actions';
+import * as actions from '../actions/product.actions';
+
+export const featureKey = 'personListState';
 
 export interface ProductState extends EntityState<Product> {
   ProductsLoaded: boolean;
@@ -17,24 +18,22 @@ export const initialState = adapter.getInitialState({
 export const ProductReducer = createReducer(
   initialState,
 
-  on(ProductActionTypes.ProductsLoaded, (state, action) => {
-    return adapter.addMany(
+  on(actions.productsLoaded, (state, action) => {
+    return adapter.setAll(
       action.product,
-      {...state, ProductsLoaded: true}
-
+      { ...state, ProductsLoaded: true }
     );
-
   }),
 
-  on(ProductActionTypes.createProduct, (state, action) => {
+  on(actions.createProduct, (state, action) => {
     return adapter.addOne(action.product, state);
   }),
 
-  on(ProductActionTypes.deleteProduct, (state, action) => {
+  on(actions.deleteProductSuccess, (state, action) => {
     return adapter.removeOne(action.id, state);
   }),
 
-  on(ProductActionTypes.updateProduct, (state, action) => {
+  on(actions.updateProduct, (state, action) => {
     return adapter.upsertOne(action.update, state);
   })
 

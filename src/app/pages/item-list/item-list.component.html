@@ -1,44 +1,51 @@
 <div class="container">
-<h1>Product List</h1>
-<button mat-stroked-button color="accent" routerLink="/item">New Product</button>
-<td>
+  <h1>Product List</h1>
+  <button mat-stroked-button
+          color="accent"
+          routerLink="/item">New Product</button>
+  <td>
 
-</td>
+  </td>
   <div class="form-group">
 
-    <input type="text" matInput placeholder="Search..."[(ngModel)]="filterTerm">
+    <input type="text"
+           matInput
+           placeholder="Search..."
+           [(ngModel)]="filterTerm">
   </div>
   <table class="table">
-    <thead >
-        <tr class="coverage">
-            <th style="width: 30%">Out of Stock</th>
-            <th style="width: 30%">StockCode</th>
-            <th style="width: 30%">Name</th>
-            <th style="width: 30%">Amount</th>
-            <th style="width: 30%">Updated At</th>
+    <thead>
+      <tr class="coverage">
+        <th style="width: 30%">Out of Stock</th>
+        <th style="width: 30%">StockCode</th>
+        <th style="width: 30%">Name</th>
+        <th style="width: 30%">Amount</th>
+        <th style="width: 30%">Updated At</th>
 
-            <th style="width: 10%"></th>
-        </tr>
+        <th style="width: 10%"></th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pro of product | filter : filterTerm">
+      <tr *ngFor="let pro of products$ | async | filter : filterTerm">
 
-            <td> <input type="checkbox" [checked]="pro.amount<1" [disabled]="true" >Out of Stock
-          </td>
-            <td>{{pro.stockCode | uppercase}}</td>
-            <td> {{pro.name}}</td>
-            <td>{{pro.amount}}</td>
-            <td>{{pro.lastUpdatedAt | date}}</td>
-            <td>
-                <button  routerLink="edit/{{pro.id}}" ><mat-icon>receipt</mat-icon></button>
-                <button (click)="deletePro(pro)" class="text-danger"><mat-icon>delete</mat-icon></button> &nbsp;
-            </td>
-        </tr>
-        <tr *ngIf="!product">
-            <td colspan="4" class="text-center">
-                <span class="spinner-border spinner-border-lg align-center"></span>
-            </td>
-        </tr>
+        <td> <input type="checkbox"
+                 [checked]="pro.amount<1"
+                 [disabled]="true">Out of Stock
+        </td>
+        <td>{{pro.stockCode | uppercase}}</td>
+        <td> {{pro.name}}</td>
+        <td>{{pro.amount}}</td>
+        <td>{{pro.lastUpdatedAt | date}}</td>
+        <td>
+          <button routerLink="edit/{{pro.id}}">
+            <mat-icon>receipt</mat-icon>
+          </button>
+          <button (click)="deletePro(pro.id)"
+                  class="text-danger">
+            <mat-icon>delete</mat-icon>
+          </button> &nbsp;
+        </td>
+      </tr>
     </tbody>
-</table>
+  </table>
 </div>

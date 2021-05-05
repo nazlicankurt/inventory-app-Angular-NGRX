@@ -12,24 +12,24 @@ export class ProductService {
   url = 'https://60841f429b2bed0017040b2f.mockapi.io/products/';
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.url, { headers: this.httpHeaders });
   }
 
-  getById(id: string) :Observable<Product> {
-    return this.http.get<Product>(this.url +id)
-}
+  getById(id: string): Observable<Product> {
+    return this.http.get<Product>(this.url + id);
+  }
 
   createProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.url, product);
   }
 
-  updateProduct(id: string,model: Product): Observable<Product> {
+  updateProduct(id: string, model: Product): Observable<Product> {
     return this.http.put<Product>(this.url + id, model);
   }
 
-  deleteProduct(id: string) {
-    return this.http.delete(this.url +id);
+  deleteProduct(id: string): Observable<any> {
+    return this.http.delete(this.url + id);
   }
 }
