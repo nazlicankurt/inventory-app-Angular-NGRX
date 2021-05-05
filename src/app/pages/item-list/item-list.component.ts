@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Product } from 'src/app/core/models/product';
 import * as actions from '../../store/actions/product.actions';
 import * as fromReducer from '../../store/selectors/product.selectors';
@@ -17,19 +16,19 @@ export class ItemListComponent implements OnInit {
   filterTerm: string;
 
   constructor(
-    private store: Store,
-    private route: ActivatedRoute,
-    private router: Router) { }
+    private store: Store) { }
 
 
   ngOnInit(): void {
-    this.store.dispatch(actions.loadProducts());
+  this.store.dispatch(actions.loadProducts());
     this.products$ = this.store.select(fromReducer.getAllProducts);
   }
 
-  deletePro(id: string): void {
-    this.store.dispatch(actions.deleteProduct({ id }));
+  deletePro(id: string) {
+  this.store.dispatch(actions.deleteProduct({id : id }));
+
   }
+
 }
 
 

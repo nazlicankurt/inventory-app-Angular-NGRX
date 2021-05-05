@@ -34,7 +34,7 @@ export const ProductReducer = createReducer(
   }),
 
   on(actions.updateProduct, (state, action) => {
-    return adapter.upsertOne(action.update, state);
+    return adapter.updateOne(action.product, state);
   })
 
 );

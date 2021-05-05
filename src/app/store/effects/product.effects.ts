@@ -22,7 +22,7 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(actions.createProduct),
       concatMap((action) => this.productService.createProduct(action.product)),
-      tap(() => this.router.navigateByUrl('/products'))
+      tap(() => this.router.navigateByUrl('/item'))
     ),
     { dispatch: false }
   );

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { State } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { Product } from 'src/app/core/models/product';
 import { ProductService } from 'src/app/core/services/product.service';
-import { AppState } from 'src/app/store';
+import * as actions from '../../store/actions/product.actions';
 
 @Component({
   selector: 'app-item',
@@ -22,7 +23,7 @@ export class ItemComponent implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
-    private store: State<AppState>
+    private store: Store
   ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 20, 0, 1);
@@ -35,11 +36,11 @@ export class ItemComponent implements OnInit {
       lastUpdatedAt: [null],
       amount: [
         '',
-        Validators.compose([
+        [
           Validators.required,
           Validators.pattern('^[0-9]*$'),
-          Validators.maxLength(3),
-        ]),
+          Validators.max(1000),
+        ],
       ],
     });
   }
@@ -50,11 +51,20 @@ export class ItemComponent implements OnInit {
   }
 
   onSubmit() {
-    this.productService
-      .createProduct(this.productForm.value)
-      .pipe()
-      .subscribe(() => {
-        this.router.navigate(['/item'], { relativeTo: this.route });
-      });
-  }
+if(!this.productForm.valid) {
+  return;
 }
+const product : Product = {
+id: this.productForm.value.id,
+stockCode: this.productForm.value.stockCode,
+amount: this.productForm.value.amount,
+brand: this.productForm.value.brand,
+status: this.productForm.value.status,
+name: this.productForm.value.name,
+createdAt: this.productForm.value.createdAt,
+lastUpdatedAt: this.productForm.value.lastUpdatedAt,
+// ...state.
+};
+this.store.dispatch(actions.createProduct({product}))
+    }
+  }

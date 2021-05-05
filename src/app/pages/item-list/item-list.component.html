@@ -21,7 +21,7 @@
     </thead>
     <tbody>
       <ng-container>
-        <tr *ngFor="let pro of products$ | filter : filterTerm">
+        <tr *ngFor="let pro of products$ |async | filter : filterTerm">
           <td> <input type="checkbox" [checked]="pro.amount<1" [disabled]="true">Out of Stock
           </td>
           <td>{{pro.stockCode | uppercase}}</td>
