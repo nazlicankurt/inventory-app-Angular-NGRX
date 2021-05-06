@@ -29,7 +29,7 @@ export class ProductService {
     return this.http.put<Product>(this.url + id, changes);
   }
 
-  deleteProduct(id: string): Observable<Product> {
+  deleteProduct(id: number | string): Observable<Product> {
 
     return this.http.delete<Product>(this.url +id)
 }

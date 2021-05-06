@@ -27,14 +27,16 @@ Edit Product
                         </mat-form-field>
                   </td>
                   <tr>
-                  <td>
+                    <td>
                       <mat-form-field class="full-width">
-                          <input matInput type="number" min="0" step="0" placeholder="Amount" formControlName="amount">
-                          <mat-error *ngIf ="this.productForm.controls['amount'].errors?.pattern">Please enter only number</mat-error>
-                          <mat-error *ngIf ="this.productForm.controls['amount'].errors?.maxlength" >Max amount should be 999</mat-error>
+                        <input matInput type="number" min="0" step="0" placeholder="Amount" formControlName="amount">
+                        <mat-error *ngIf="this.productForm.controls['amount'].errors?.pattern">Please enter positive number
+                        </mat-error>
+                        <mat-error *ngIf="this.productForm.controls['amount'].errors?.max">Max amount should be 1000
+                        </mat-error>
                       </mat-form-field>
-                  </td>
-              </tr>
+                    </td>
+                  </tr>
               <tr>
                 <td>
                   <mat-form-field class="example-full-width" appearance="fill">
@@ -62,8 +64,8 @@ Edit Product
               </tr>
               <tr>
                   <td colspan="2" class="content-center">
-                      <!-- <button type="button" mat-raised-button color="accent" routerLink= '/item-list'  routerLinkActive="active">Submit</button> -->
-                <button type="submit" mat-raised-button color="accent" >Update</button>
+                  
+                <button type="submit" mat-raised-button color="accent">Update</button>
                 <tr></tr>
                 <button type="cancel" mat-raised-button color="accent"  routerLink="/item">Cancel</button>
 

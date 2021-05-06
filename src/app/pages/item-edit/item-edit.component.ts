@@ -24,7 +24,6 @@ export class ItemEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router,
     private store : Store
   ) {
     const currentYear = new Date().getFullYear();
@@ -38,11 +37,11 @@ export class ItemEditComponent implements OnInit {
       lastUpdatedAt: [null],
       amount: [
         '',
-        Validators.compose([
+        [
           Validators.required,
           Validators.pattern('^[0-9]*$'),
-          Validators.maxLength(3),
-        ]),
+          Validators.max(1000),
+        ],
       ],
     });
   }
