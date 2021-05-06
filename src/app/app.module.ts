@@ -23,7 +23,15 @@ import { ItemListComponent } from './pages/item-list/item-list.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { StateStoreModule } from './store/store.module';
 @NgModule({
-  declarations: [AppComponent, NavComponent, DashComponent, ItemComponent, ItemEditComponent, ItemListComponent, NotFoundComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    DashComponent,
+    ItemComponent,
+    ItemEditComponent,
+    ItemListComponent,
+    NotFoundComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,12 +47,9 @@ import { StateStoreModule } from './store/store.module';
     EffectsModule.forRoot([]),
     StateStoreModule,
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-
   ],
   providers: [ProductService],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule {
-
-}
+export class AppModule {}

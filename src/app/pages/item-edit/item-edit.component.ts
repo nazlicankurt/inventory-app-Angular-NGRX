@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Update } from '@ngrx/entity';
 import { Store } from '@ngrx/store';
 import { Product } from 'src/app/core/models/product';
 import { ProductService } from 'src/app/core/services/product.service';
 import * as actions from '../../store/actions/product.actions';
-import * as fromReducer from '../../store/selectors/product.selectors';
 
 @Component({
   selector: 'app-item-edit',

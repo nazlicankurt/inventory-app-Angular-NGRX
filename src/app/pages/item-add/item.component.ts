@@ -20,9 +20,7 @@ export class ItemComponent implements OnInit {
   maxDate: Date;
   constructor(
     private formBuilder: FormBuilder,
-    private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router,
     private store: Store
   ) {
     const currentYear = new Date().getFullYear();

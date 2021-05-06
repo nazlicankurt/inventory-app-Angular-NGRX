@@ -12,17 +12,14 @@ export interface ProductState extends EntityState<Product> {
 export const adapter: EntityAdapter<Product> = createEntityAdapter<Product>();
 
 export const initialState = adapter.getInitialState({
-  ProductsLoaded: false
+  ProductsLoaded: false,
 });
 
 export const ProductReducer = createReducer(
   initialState,
 
   on(actions.productsLoaded, (state, action) => {
-    return adapter.setAll(
-      action.product,
-      { ...state, ProductsLoaded: true }
-    );
+    return adapter.setAll(action.product, { ...state, ProductsLoaded: true });
   }),
 
   on(actions.createProduct, (state, action) => {
@@ -36,8 +33,6 @@ export const ProductReducer = createReducer(
   on(actions.updateProduct, (state, action) => {
     return adapter.updateOne(action.product, state);
   })
-
 );
-
 
 export const { selectAll, selectIds } = adapter.getSelectors();
