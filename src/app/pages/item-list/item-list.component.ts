@@ -25,7 +25,7 @@ export class ItemListComponent implements OnInit {
   }
 
   deletePro(id: string) {
-  this.store.dispatch(actions.deleteProduct({id : id }));
+  this.store.dispatch(actions.deleteProduct({id}));
 
   }
 

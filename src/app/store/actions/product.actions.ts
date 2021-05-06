@@ -8,5 +8,5 @@ export const createProduct = createAction('[Create Product Component] Create Pro
 export const deleteProduct = createAction('[Products List Operations] Delete Product', props<{ id: string }>());
 export const deleteProductSuccess = createAction('[Products List Operations] Delete Product', props<{ id: string }>());
 export const updateProduct = createAction('[Products List Operations] Upsert Product', props<{ product: Update<Product> }>());
- export const updateProductSuccess = createAction('[Product Effect] Upsert Product Success', props<{ product: Update<Product> }>());
-// export const updateProductFailure = createAction('[Product Effect] Upsert Product failure',props<{ error: any }>());
+ export const updateProductSuccess = createAction('[Product Effect] Upsert Product Success', props<{ product: Product }>());
+export const updateProductFailure = createAction('[Product Effect] Upsert Product failure',props<{ error: any }>());
