@@ -14,27 +14,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './core/modules/material.module';
 import { ProductService } from './core/services/product.service';
-import { DashComponent } from './home/dash/dash.component';
 import { NavComponent } from './home/nav/nav.component';
-
-import { ItemComponent } from './pages/item-add/item.component';
 import { ItemEditComponent } from './pages/item-edit/item-edit.component';
 import { ItemListComponent } from './pages/item-list/item-list.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { StateStoreModule } from './store/store.module';
+import {MatTableModule} from '@angular/material/table';
+import {ItemComponent}  from './pages/item-add/item.component';
+import { DashComponent } from './home/dash/dash.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 @NgModule({
   declarations: [
-    AppComponent,
-    NavComponent,
-    DashComponent,
-    ItemComponent,
-    ItemEditComponent,
-    ItemListComponent,
-    NotFoundComponent,
+  AppComponent, NavComponent, ItemEditComponent,ItemListComponent, ItemComponent, DashComponent, NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatTableModule,
     BrowserAnimationsModule,
     LayoutModule,
     ReactiveFormsModule,

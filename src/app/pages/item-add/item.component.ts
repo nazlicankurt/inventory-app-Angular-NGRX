@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Product } from 'src/app/core/models/product';
@@ -28,10 +28,10 @@ export class ItemComponent implements OnInit {
     this.maxDate = new Date();
     this.minDate1 = new Date();
     this.productForm = this.formBuilder.group({
-      stockCode: ['', [Validators.required, Validators.minLength(4)]],
-      name: ['', [Validators.required, Validators.minLength(4)]],
+      stockCode: ['', [Validators.required, this.noWhitespaceValidator, Validators.minLength(4),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+      name: ['', [Validators.required, Validators.minLength(4),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
       createdAt: ['', [Validators.required]],
-      lastUpdatedAt: [null],
+      lastUpdatedAt: ['', [Validators.required]],
       amount: [
         '',
         [
@@ -65,4 +65,10 @@ lastUpdatedAt: this.productForm.value.lastUpdatedAt,
 };
 this.store.dispatch(actions.createProduct({product}))
     }
+
+    public noWhitespaceValidator(control: FormControl) {
+      const isWhitespace = (control.value || '').trim().length === 0;
+      const isValid = !isWhitespace;
+      return isValid ? null : { 'whitespace': true };
+  }
   }

@@ -30,10 +30,10 @@ export class ItemEditComponent implements OnInit {
     this.maxDate = new Date();
     this.minDate1 = new Date();
     this.productForm = this.formBuilder.group({
-      stockCode: ['PR-', [Validators.required, Validators.minLength(4)]],
-      name: ['', [Validators.required, Validators.minLength(4)]],
+      stockCode: ['', [Validators.required, Validators.minLength(4),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+      name: ['', [Validators.required, Validators.minLength(4),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
       createdAt: ['', [Validators.required]],
-      lastUpdatedAt: [null],
+      lastUpdatedAt: ['', [Validators.required]],
       amount: [
         '',
         [
