@@ -9,8 +9,8 @@ Angular 11, Reactive Forms, Angular Schematics, Angular Material, NgRx
 2. If you want to use with NgRx  
 -  use git branch 7762fb8cbcf1e6d1228f53796842757cdb5f3de6
 3. If you want to use with angular mat-table, you can pull last version
+- Also have added validation properly
 
-Also have added validation properly
 
 
 
