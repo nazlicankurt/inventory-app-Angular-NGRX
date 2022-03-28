@@ -15,9 +15,9 @@ import * as actions from '../actions/product.actions';
 @Injectable()
 export class ProductEffects {
   constructor(
-    private productService: ProductService,
-    private actions$: Actions,
-    private router: Router
+    productService: ProductService,
+    actions$: Actions,
+    router: Router
   ) {}
 
   loadProducts$ = createEffect(() =>

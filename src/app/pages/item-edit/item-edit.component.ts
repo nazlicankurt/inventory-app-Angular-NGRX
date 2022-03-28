@@ -20,10 +20,10 @@ export class ItemEditComponent implements OnInit {
   maxDate: Date;
   minDate1: Date;
   constructor(
-    private formBuilder: FormBuilder,
-    private productService: ProductService,
-    private route: ActivatedRoute,
-    private store : Store
+    formBuilder: FormBuilder,
+    productService: ProductService,
+    route: ActivatedRoute,
+    store : Store
   ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 20, 0, 1);

@@ -19,9 +19,9 @@ export class ItemComponent implements OnInit {
   minDate1: Date;
   maxDate: Date;
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private store: Store
+    formBuilder: FormBuilder,
+    route: ActivatedRoute,
+    store: Store
   ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 20, 0, 1);

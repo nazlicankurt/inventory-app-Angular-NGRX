@@ -12,7 +12,7 @@ export class ProductService {
   url = 'https://60841f429b2bed0017040b2f.mockapi.io/products/';
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private http: HttpClient) {}
+  constructor(http: HttpClient) {}
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.url, { headers: this.httpHeaders });
   }
