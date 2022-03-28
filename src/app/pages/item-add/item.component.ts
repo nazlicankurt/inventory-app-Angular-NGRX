@@ -14,7 +14,7 @@ import * as actions from '../../store/actions/product.actions';
 export class ItemComponent implements OnInit {
   productForm: FormGroup;
   id!: string;
-  isAddMode: boolean = false;
+  isAddMode = false;
   minDate: Date;
   minDate1: Date;
   maxDate: Date;
