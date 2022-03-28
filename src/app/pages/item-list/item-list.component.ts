@@ -19,7 +19,7 @@ import * as fromReducer from '../../store/selectors/product.selectors';
 export class ItemListComponent implements OnInit {
 
   searchKey: string;
-  constructor(private proService: ProductService, private store : Store) {}
+  constructor(proService: ProductService, store : Store) {}
 
 
   displayedColumns: string[] = [
